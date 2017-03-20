@@ -10,3 +10,14 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# NetBeans ignore
+build/
+build.xml
+manifest.mf
+nbproject/
+
+# IDEA ignore
+.idea/
+Project.iml
+out/
