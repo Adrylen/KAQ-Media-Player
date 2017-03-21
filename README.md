@@ -35,3 +35,7 @@ git push origin master
 * Branches
 
 // TODO
+
+* Supprimer la demande de mot de passe
+
+git config credential.helper 'cache --timeout 14400'
