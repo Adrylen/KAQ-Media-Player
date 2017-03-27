@@ -5,6 +5,8 @@
  */
 package project.main;
 
+import project.window.MyFrame;
+
 /**
  *
  * @author adrylen
@@ -15,8 +17,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-	// TODO code application logic here
-	System.out.println("Hello World !");
+		MyFrame frame = new MyFrame();
     }
     
 }
