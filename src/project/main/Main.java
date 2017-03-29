@@ -12,12 +12,11 @@ import project.window.MyFrame;
  * @author adrylen
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 		MyFrame frame = new MyFrame();
+//	    SwingUtilities.invokeLater( () ->
+//		    new Window("KAQ - MultiMedia Player", 1100, 700)
+//			.create()
+//	    );
     }
-    
 }
