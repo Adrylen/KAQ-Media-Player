@@ -5,18 +5,15 @@
  */
 package project.main;
 
-/**
- *
- * @author adrylen
- */
-public class Main {
+import project.window.Window;
 
-    /**
-     * @param args the command line arguments
-     */
+import javax.swing.SwingUtilities;
+
+public class Main {
     public static void main(String[] args) {
-		// TODO code application logic here
-		System.out.println("Hello World !");
+//	    SwingUtilities.invokeLater( () ->
+//		    new Window("KAQ - MultiMedia Player", 1100, 700)
+//			.create()
+//	    );
     }
-    
 }
