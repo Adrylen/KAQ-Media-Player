@@ -5,6 +5,8 @@
  */
 package project.player;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -23,17 +25,34 @@ public class Player {
 	   
 	public static void main(String[] args) {
 		new NativeDiscovery().discover();
-        SwingUtilities.invokeLater(Player::StartWindow);
+		
+		String arg = "/home/isen/Videos/pony_anthology/PONIES_The_Anthology_I.avi";
+        
+		SwingUtilities.invokeLater(() -> StartWindow());
+        SwingUtilities.invokeLater(() -> playFile(arg));
 	}
 
+	public static void playFile(String arg){
+		mediaPlayerComponent.getMediaPlayer().playMedia(arg);
+	}
+	
+	
 	public static void StartWindow() {
-		String arg = "/home/isen/Videos/pony_anthology/PONIES_The_Anthology_I.avi";
+
 		frame = new JFrame("My First Media Player");
 		frame.setBounds(100, 100, 600, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mediaPlayerComponent.release();
+                System.exit(0);
+            }
+        });
+        
+		mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
         frame.setContentPane(mediaPlayerComponent);
 		frame.setVisible(true);
-        mediaPlayerComponent.getMediaPlayer().playMedia(arg);
+
 	}
 }
