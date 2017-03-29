@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -29,14 +30,20 @@ public class Window extends JFrame {
 		this.title = title;
 		this.width = width;
 		this.height = height;
-		this.playlistPanel = new PlaylistPanel(this.width, this.height / 4);
+		this.playlistPanel = new PlaylistPanel(this.width / 4, this.height);
 	}
 
 	public void create() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 
-		this.add(this.playlistPanel, BorderLayout.SOUTH);
+		JScrollPane playlist = new JScrollPane(this.playlistPanel,
+			ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+			ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+		);
+		playlist.setPreferredSize(new Dimension(this.width / 4, this.height));
+
+		this.add(playlist, BorderLayout.WEST);
 
 		this.setSize(this.width, this.height);
 		this.setVisible(true);
