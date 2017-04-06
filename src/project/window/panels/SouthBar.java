@@ -10,15 +10,11 @@ import java.net.MalformedURLException;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
 import project.path.PathFile;
+
+import javax.swing.ImageIcon;
 import project.window.panels.buttons.ControlButton;
+import java.io.IOException;
 
 /**
  *
@@ -27,18 +23,29 @@ import project.window.panels.buttons.ControlButton;
 public class SouthBar extends Box{
     public SouthBar() throws MalformedURLException{
         super(BoxLayout.X_AXIS);
-        PathFile playP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/play1.png");
-        PathFile pauseP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/pause.png");
-        PathFile backP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/back.png");
-        PathFile stopP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/stop.png");
-        PathFile nextP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/next.png");
-        PathFile randomP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/random.png");
-        PathFile repeatP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/repeat.png");
-        PathFile fullscreenP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/fullscreen.png");
-        PathFile playlistP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/playlist.png");
-        PathFile soundP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/sound.png");        
-        PathFile muteP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/mute.png");
-        
+
+        PathFile playP = null, pauseP = null,
+            backP = null, stopP = null, nextP = null,
+            randomP = null, repeatP = null,
+            fullscreenP = null, playlistP = null,
+            soundP = null, muteP = null;
+
+        try {
+            playP = new PathFile("/assets/play1.png",true);
+            pauseP = new PathFile("/assets/pause.png",true);
+            backP = new PathFile("/assets/back.png",true);
+            stopP = new PathFile("/assets/stop.png",true);
+            nextP = new PathFile("/assets/next.png",true);
+            randomP = new PathFile("/assets/random.png",true);
+            repeatP = new PathFile("/assets/repeat.png",true);
+            fullscreenP = new PathFile("/assets/fullscreen.png",true);
+            playlistP = new PathFile("/assets/playlist.png",true);
+            soundP = new PathFile("/assets/sound.png",true);
+            muteP = new PathFile("/assets/mute.png",true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //hide/show repeat fullscreen
 
         ControlButton play = new ControlButton(new ImageIcon(playP.getPath()), new ImageIcon(pauseP.getPath()));
@@ -50,10 +57,10 @@ public class SouthBar extends Box{
         ControlButton fullscreen = new ControlButton(new ImageIcon(fullscreenP.getPath()), true);
         ControlButton playlist = new ControlButton(new ImageIcon(playlistP.getPath()), true);
         ControlButton mute = new ControlButton(new ImageIcon(muteP.getPath()), new ImageIcon(soundP.getPath()));
-        
+
         this.setBorder(BorderFactory.createEmptyBorder(0, 3, 5, 0));
-        
-        this.add(play); 
+
+        this.add(play);
         this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(back);
         this.add(stop);
@@ -61,11 +68,11 @@ public class SouthBar extends Box{
         this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(random);
         this.add(repeat);
-        this.add(Box.createRigidArea(new Dimension(10, 0)));        
+        this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(fullscreen);
         this.add(playlist);
-        this.add(Box.createRigidArea(new Dimension(10, 0)));        
+        this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(mute);
     }
-    
+
 }

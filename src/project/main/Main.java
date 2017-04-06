@@ -5,10 +5,9 @@
  */
 package project.main;
 
-//import project.window.MyFrame;
-
 import project.window.MyFrame;
 
+import javax.swing.SwingUtilities;
 import java.net.MalformedURLException;
 
 /**
@@ -16,12 +15,16 @@ import java.net.MalformedURLException;
  * @author adrylen
  */
 public class Main {
-    public static void main(String[] args) throws MalformedURLException {
-		MyFrame frame = new MyFrame();
-//	    SwingUtilities.invokeLater( () ->
-//		    new Window("KAQ - MultiMedia Player", 1100, 700)
-//				.init()
-//				.create()
-//	    );
-    }
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(() -> {
+			try {
+				new MyFrame()
+					.init()
+					.create();
+//					.testPlayer();
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		});
+	}
 }
