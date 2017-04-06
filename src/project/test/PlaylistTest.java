@@ -8,6 +8,12 @@
 
 package project.test;
 
+import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import project.path.PathFile;
 import project.path.Playlist;
 
@@ -15,14 +21,6 @@ import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.ListIterator;
-
-import junit.framework.TestCase;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class PlaylistTest extends TestCase {
@@ -107,18 +105,6 @@ public class PlaylistTest extends TestCase {
 	}
 
 	@Test
-	public void testClone() throws MalformedURLException {
-		assertTrue(this.playlist.addAll(Arrays.asList(
-			new PathFile("file:///bin"),
-			new PathFile("file:///etc"),
-			new PathFile("file:///lib"),
-			new PathFile("file:///usr")
-		)));
-		Playlist cloned = this.playlist.clone();
-		assertNotSame(this.playlist, cloned);
-	}
-
-	@Test
 	public void testContains() throws MalformedURLException {
 		assertTrue(this.playlist.add(new PathFile("file:///")));
 		assertTrue(this.playlist.contains(new PathFile("file:///")));
@@ -146,6 +132,18 @@ public class PlaylistTest extends TestCase {
 			new PathFile("file:///lib"),
 			new PathFile("file:///usr")
 		)));
+	}
+
+	@Test
+	public void testCopy() throws MalformedURLException {
+		assertTrue(this.playlist.addAll(Arrays.asList(
+			new PathFile("file:///bin"),
+			new PathFile("file:///etc"),
+			new PathFile("file:///lib"),
+			new PathFile("file:///usr")
+		)));
+		Playlist cloned = this.playlist.copy();
+		assertNotSame(this.playlist, cloned);
 	}
 
 	@Test
@@ -246,7 +244,7 @@ public class PlaylistTest extends TestCase {
 		assertFalse(this.playlist.remove(new PathFile("file:///")));
 		assertTrue(this.playlist.remove(new PathFile("file:///home")));
 		assertEquals("/lib", this.playlist.get(1).getPath());
-	}
+	}   // TODO
 
 	@Test
 	public void testRemoveI() throws MalformedURLException {
@@ -258,7 +256,7 @@ public class PlaylistTest extends TestCase {
 
 		this.playlist.remove(-1).remove(5);
 		assertEquals("/usr", this.playlist.remove(3).get(3).getPath());
-	}
+	}   // TODO
 
 	@Test
 	public void testRemoveAll() throws MalformedURLException {
@@ -273,7 +271,7 @@ public class PlaylistTest extends TestCase {
 			new PathFile("file:///lib")
 		)));
 		assertNull(this.playlist.get(2));
-	}
+	}   // TODO
 
 	@Test
 	public void testResize() throws MalformedURLException {
@@ -320,7 +318,7 @@ public class PlaylistTest extends TestCase {
 		assertEquals("/bin", this.playlist.get(0).getPath());
 		assertEquals("/lib", this.playlist.get(1).getPath());
 		assertNull(this.playlist.get(2));
-	}
+	}   // TODO
 
 	@Test
 	public void testSet() throws MalformedURLException {
@@ -384,7 +382,7 @@ public class PlaylistTest extends TestCase {
 		assertEquals(3, subList.size());
 		assertEquals("/etc", subList.get(0).getPath());
 		assertEquals("/lib", subList.get(2).getPath());
-	}
+	}   // TODO
 
 	@Test
 	public void testToArray() throws MalformedURLException {
@@ -412,5 +410,5 @@ public class PlaylistTest extends TestCase {
 		assertEquals("/etc", array[0].getPath());
 		assertEquals("/usr", array[1].getPath());
 		assertNull(array[2]);
-	}
+	}   // TODO
 }
