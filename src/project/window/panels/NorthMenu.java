@@ -8,7 +8,9 @@ package project.window.panels;
 import project.window.menus.MediaMenu;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import project.window.menus.AudioMenu;
 import project.window.menus.LectureMenu;
+import project.window.menus.OptionMenu;
 
 /**
  *
@@ -20,12 +22,14 @@ public class NorthMenu extends JMenuBar{
         
         MediaMenu media = new MediaMenu("Media");
         LectureMenu lecture = new LectureMenu("Lecture");
-        JMenu audio = new JMenu("Audio");
+        AudioMenu audio = new AudioMenu("Audio");
+        OptionMenu options = new OptionMenu("Options");
         JMenu video = new JMenu("Video");
         this.add(media);
         this.add(lecture);
         this.add(audio);
         this.add(video);
+        this.add(options);
     
 }
     

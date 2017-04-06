@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import project.path.PathFile;
 
 /**

@@ -20,11 +20,20 @@ public class LectureMenu extends JMenu{
         JMenuItem back = new JMenuItem("Précédent");
         JMenuItem stop = new JMenuItem("Stop");
         JMenuItem next = new JMenuItem("Suivant");
+        JMenuItem random = new JMenuItem("Random");
+        JMenuItem repeat = new JMenuItem("Repeat");
+        JMenuItem fullscreen = new JMenuItem("Fullscreen");
+        JMenuItem playlist = new JMenuItem("Afficher la playlist");
+        
         
         this.add(play);
         this.add(back);
         this.add(stop);
         this.add(next);
+        this.add(random);
+        this.add(repeat);
+        this.add(fullscreen);
+        this.add(playlist);
     }
     
 }
