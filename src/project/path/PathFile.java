@@ -8,14 +8,16 @@
 
 package project.path;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.io.File;
 
 public class PathFile {
 	private URL url;
 
-	public PathFile(String path) throws MalformedURLException {
-		this(new URL(path));
+	public PathFile(String path, boolean relative) throws IOException {
+		this(new URL(relative ? "file://"+new File(".").getCanonicalPath()+path : path));
 	}
 
 	public PathFile(URL url) {

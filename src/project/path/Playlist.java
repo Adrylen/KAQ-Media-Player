@@ -15,7 +15,7 @@ import java.util.ListIterator;
 import java.util.Random;
 
 public class Playlist implements List {
-	public static final int DEFAULT_LENGTH = 10;
+	private static final int DEFAULT_LENGTH = 10;
 
 	private PathFile[] playlist;
 	private PathFile[] originalList = null;
@@ -25,12 +25,12 @@ public class Playlist implements List {
 		this(-1);
 	}
 
-	public Playlist(int size) {
+	private Playlist(int size) {
 		this.playlist = new PathFile[(size < 0) ? DEFAULT_LENGTH : size];
 	}
 
 	//  Tested
-	public Playlist clone() {
+	public Playlist copy() {
 		Playlist cloned = new Playlist(this.playlist.length);
 		for(int i = 0; i < this.playlist.length; ++i) {
 			cloned.set(i, this.playlist[i]);
@@ -45,7 +45,7 @@ public class Playlist implements List {
 
 	//  Tested
 	public Playlist shuffle() throws CloneNotSupportedException {
-		Playlist shuffled = clone();
+		Playlist shuffled = copy();
 		for(int i = 0; i < this.playlist.length; ++i) {
 			int j = new Random().nextInt(shuffled.size());
 			PathFile tmp = shuffled.get(i);
@@ -56,7 +56,7 @@ public class Playlist implements List {
 	}
 
 	//  Tested
-	public Playlist sort() {
+	public void sort() {
 		for(int i = 0; i < this.playlist.length-1; ++i) {
 			if(this.playlist[i] != null) {
 				for(int j = i+1; j < this.playlist.length; ++j) {
@@ -70,7 +70,6 @@ public class Playlist implements List {
 				}
 			}
 		}
-		return this;
 	}
 
 	//  Tested
@@ -99,38 +98,32 @@ public class Playlist implements List {
 			}
 		}
 		PathFile[] newPlaylist = new PathFile[size];
-		for(int i = 0; i < size; ++i) {
-			newPlaylist[i] = this.playlist[i];
-		}
+		System.arraycopy(newPlaylist, 0, this.playlist, 0, size);
 		this.playlist = newPlaylist;
 		return this;
 	}
 
 	//  Tested
-	public Playlist resize(int size) {
+	public void resize(int size) {
 		if(size > this.playlist.length) {
 			PathFile[] newPlaylist = new PathFile[size];
-			for(int i = 0; i < this.playlist.length; ++i) {
-				newPlaylist[i] = playlist[i];
-			}
+			System.arraycopy(newPlaylist, 0, this.playlist, 0, this.playlist.length);
 			playlist = newPlaylist;
 		}
-		return this;
 	}
 
 	//  Tested
-	public Playlist restore() {
+	public void restore() {
 		if(randomized) {
 			this.playlist = this.originalList;
 			this.originalList = null;
 			this.randomized = false;
 		}
-		return this;
 	}
 
 	@Override   //  Tested
 	public boolean add(Object o) {
-		if(o instanceof PathFile && o != null) {
+		if(o instanceof PathFile) {
 			for(int i = 0; i < this.playlist.length; ++i) {
 				if(this.playlist[i] == null) {
 					this.playlist[i] = (PathFile) o;
@@ -146,7 +139,7 @@ public class Playlist implements List {
 
 	@Override   //  Tested
 	public void add(int rank, Object o) {
-		if((rank >= 0 || rank <= this.playlist.length) && o instanceof PathFile && o != null) {
+		if((rank >= 0 || rank <= this.playlist.length) && o instanceof PathFile) {
 			if(this.playlist[rank] == null) {
 				add(o);
 			} else if(this.playlist[this.playlist.length-1] == null) {
@@ -204,12 +197,12 @@ public class Playlist implements List {
 
 	@Override   //  Tested
 	public boolean contains(Object o) {
-		if(o instanceof PathFile && o != null) {
-			for(int i = 0; i < this.playlist.length; ++i) {
-				if(this.playlist[i] == null) {
+		if(o instanceof PathFile) {
+			for(PathFile file : this.playlist) {
+				if(file == null) {
 					continue;
 				}
-				if(this.playlist[i].getPath().equals(((PathFile) o).getPath())) {
+				if(file.getPath().equals(((PathFile) o).getPath())) {
 					return true;
 				}
 			}
@@ -238,10 +231,12 @@ public class Playlist implements List {
 	@Override   //  Tested
 	public int indexOf(Object o) {
 		if(contains(o)) {
-			for(int i = 0; i < this.playlist.length; ++i) {
-				if(this.playlist[i].getPath().equals(((PathFile)o).getPath())) {
+			int i = 0;
+			for(PathFile file : this.playlist) {
+				if(file.getPath().equals(((PathFile) o).getPath())) {
 					return i;
 				}
+				++i;
 			}
 		}
 		return -1;
@@ -249,8 +244,8 @@ public class Playlist implements List {
 
 	@Override   //  Tested
 	public boolean isEmpty() {
-		for(int i = 0; i < this.playlist.length; ++i) {
-			if(this.playlist[i] != null) {
+		for(PathFile file : this.playlist) {
+			if(file != null) {
 				return false;
 			}
 		}
@@ -335,9 +330,7 @@ public class Playlist implements List {
 	@Override   //  Tested
 	public boolean remove(Object o) {
 		if(contains(o)) {
-			for(int i = indexOf(o); i < this.playlist.length-1; ++i) {
-				this.playlist[i] = this.playlist[i+1];
-			}
+			System.arraycopy(this.playlist, indexOf(o), this.playlist, indexOf(o)+1, this.playlist.length-1);
 			this.playlist[this.playlist.length-1] = null;
 			return true;
 		}
@@ -420,9 +413,8 @@ public class Playlist implements List {
 				subList.set(j, this.playlist[i+j]);
 			}
 			return subList;
-		} else {
-			return null;
 		}
+		return this;
 	}
 
 	@Override   //  Tested
