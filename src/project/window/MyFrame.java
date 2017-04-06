@@ -5,21 +5,21 @@
  */
 package project.window;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.net.MalformedURLException;
+import project.window.panels.NorthMenu;
+import project.window.panels.SouthBar;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import project.window.panels.NorthMenu;
-import project.window.panels.SouthBar;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.net.MalformedURLException;
 
 /**
  *
  * @author Qwen
  */
-public class MyFrame extends JFrame{
-    
+public class MyFrame extends JFrame {
     public MyFrame() throws MalformedURLException {
         this.setTitle("KAQMediaPlayer");
         this.setLayout(new BorderLayout(5, 5));
