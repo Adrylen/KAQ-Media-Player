@@ -19,6 +19,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import project.path.PathFile;
 import project.window.panels.buttons.ControlButton;
+import project.window.panels.buttons.SoundSlider;
 
 /**
  *
@@ -51,6 +52,8 @@ public class SouthBar extends Box{
         ControlButton playlist = new ControlButton(new ImageIcon(playlistP.getPath()), true);
         ControlButton mute = new ControlButton(new ImageIcon(muteP.getPath()), new ImageIcon(soundP.getPath()));
         
+        SoundSlider slider = new SoundSlider(0, 100, 20);
+        
         this.setBorder(BorderFactory.createEmptyBorder(0, 3, 5, 0));
         
         this.add(play); 
@@ -66,6 +69,7 @@ public class SouthBar extends Box{
         this.add(playlist);
         this.add(Box.createRigidArea(new Dimension(10, 0)));        
         this.add(mute);
+        this.add(slider);
     }
     
 }
