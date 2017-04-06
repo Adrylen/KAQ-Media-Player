@@ -5,21 +5,28 @@
  */
 package project.window.panels;
 
+import java.awt.Dimension;
 import java.net.MalformedURLException;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import project.path.PathFile;
+import project.window.panels.buttons.ControlButton;
 
 /**
  *
  * @author Qwen
  */
-public class SouthBar extends JMenuBar{
+public class SouthBar extends Box{
     public SouthBar() throws MalformedURLException{
+        super(BoxLayout.X_AXIS);
         PathFile playP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/play1.png");
         PathFile pauseP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/pause.png");
         PathFile backP = new PathFile("file:///C:/Users/Qwen/Documents/KAQMediaPlayer/assets/back.png");
@@ -34,49 +41,31 @@ public class SouthBar extends JMenuBar{
         
         //hide/show repeat fullscreen
 
-        JButton play = new JButton(new ImageIcon(playP.getPath()));
-        JButton pause = new JButton(new ImageIcon(pauseP.getPath()));
-        JButton back = new JButton(new ImageIcon(backP.getPath()));
-        JButton stop = new JButton(new ImageIcon(stopP.getPath()));
-        JButton next = new JButton(new ImageIcon(nextP.getPath()));
-        JButton random = new JButton(new ImageIcon(randomP.getPath()));
-        JButton repeat = new JButton(new ImageIcon(repeatP.getPath()));
-        JButton fullscreen = new JButton(new ImageIcon(fullscreenP.getPath()));
-        JButton playlist = new JButton(new ImageIcon(playlistP.getPath()));
-        JButton sound = new JButton(new ImageIcon(soundP.getPath()));
-        JButton mute = new JButton(new ImageIcon(muteP.getPath()));
+        ControlButton play = new ControlButton(new ImageIcon(playP.getPath()), new ImageIcon(pauseP.getPath()));
+        ControlButton back = new ControlButton(new ImageIcon(backP.getPath()));
+        ControlButton stop = new ControlButton(new ImageIcon(stopP.getPath()));
+        ControlButton next = new ControlButton(new ImageIcon(nextP.getPath()));
+        ControlButton random = new ControlButton(new ImageIcon(randomP.getPath()), true);
+        ControlButton repeat = new ControlButton(new ImageIcon(repeatP.getPath()), true);
+        ControlButton fullscreen = new ControlButton(new ImageIcon(fullscreenP.getPath()), true);
+        ControlButton playlist = new ControlButton(new ImageIcon(playlistP.getPath()), true);
+        ControlButton mute = new ControlButton(new ImageIcon(muteP.getPath()), new ImageIcon(soundP.getPath()));
         
-        this.add(play);
-        this.add(pause);
+        this.setBorder(BorderFactory.createEmptyBorder(0, 3, 5, 0));
         
-        JMenu separator = new JMenu();
-        separator.addSeparator();
-        this.add(separator);
-        
+        this.add(play); 
+        this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(back);
         this.add(stop);
         this.add(next);
-        
-        JMenu separator1 = new JMenu();
-        separator1.addSeparator();
-        this.add(separator1);
-        
+        this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(random);
         this.add(repeat);
-        
-        JMenu separator2 = new JMenu();
-        separator2.addSeparator();
-        this.add(separator2);
-        
+        this.add(Box.createRigidArea(new Dimension(10, 0)));        
         this.add(fullscreen);
         this.add(playlist);
-        
-        JMenu separator3 = new JMenu();
-        separator3.addSeparator();
-        this.add(separator3);
-        
+        this.add(Box.createRigidArea(new Dimension(10, 0)));        
         this.add(mute);
-        this.add(sound);
     }
     
 }

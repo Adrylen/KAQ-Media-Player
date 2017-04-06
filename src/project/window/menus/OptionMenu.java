@@ -7,6 +7,7 @@ package project.window.menus;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import project.window.panels.buttons.ControlMenu;
 
 /**
  *
@@ -16,7 +17,7 @@ public class OptionMenu extends JMenu{
     public OptionMenu(String str){
         super(str);
         
-        JMenuItem subtitles = new JMenuItem("Subtitles");
+        ControlMenu subtitles = new ControlMenu("Subtitles");
         
         this.add(subtitles);
     }

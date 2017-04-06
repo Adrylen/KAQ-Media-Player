@@ -7,6 +7,7 @@ package project.window.menus;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import project.window.panels.buttons.ControlMenu;
 
 /**
  *
@@ -16,9 +17,9 @@ public class AudioMenu extends JMenu{
     public AudioMenu(String str){
         super(str);
         
-        JMenuItem mute = new JMenuItem("Couper le son");
-        JMenuItem soundm = new JMenuItem("Baisser le volume");
-        JMenuItem soundp = new JMenuItem("Augmenter le volume");
+        ControlMenu mute = new ControlMenu("Couper le son", "Remettre le son");
+        ControlMenu soundm = new ControlMenu("Baisser le volume");
+        ControlMenu soundp = new ControlMenu("Augmenter le volume");
         
         this.add(mute);
         this.add(soundm);

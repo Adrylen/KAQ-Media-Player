@@ -7,6 +7,7 @@ package project.window.menus;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import project.window.panels.buttons.ControlMenu;
 
 /**
  *
@@ -16,14 +17,14 @@ public class LectureMenu extends JMenu{
     public LectureMenu(String str){
         super(str);
         
-        JMenuItem play = new JMenuItem("Play");
-        JMenuItem back = new JMenuItem("Précédent");
-        JMenuItem stop = new JMenuItem("Stop");
-        JMenuItem next = new JMenuItem("Suivant");
-        JMenuItem random = new JMenuItem("Random");
-        JMenuItem repeat = new JMenuItem("Repeat");
-        JMenuItem fullscreen = new JMenuItem("Fullscreen");
-        JMenuItem playlist = new JMenuItem("Afficher la playlist");
+        ControlMenu play = new ControlMenu("Play", "Pause");
+        ControlMenu back = new ControlMenu("Précédent");
+        ControlMenu stop = new ControlMenu("Stop");
+        ControlMenu next = new ControlMenu("Suivant");
+        ControlMenu random = new ControlMenu("Random");
+        ControlMenu repeat = new ControlMenu("Repeat");
+        ControlMenu fullscreen = new ControlMenu("Fullscreen");
+        ControlMenu playlist = new ControlMenu("Afficher la playlist");
         
         
         this.add(play);

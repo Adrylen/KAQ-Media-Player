@@ -6,7 +6,7 @@
 package project.window.menus;
 
 import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+import project.window.panels.buttons.ControlMenu;
 
 /**
  *
@@ -16,9 +16,9 @@ public class MediaMenu extends JMenu{
     public MediaMenu(String str){
         super(str);
         
-        JMenuItem openF = new JMenuItem("Ouvrir un fichier");
-        JMenuItem openFs = new JMenuItem("Ouvrir plusieurs fichiers");
-        JMenuItem quit = new JMenuItem("Quitter");
+        ControlMenu openF = new ControlMenu("Ouvrir un fichier");
+        ControlMenu openFs = new ControlMenu("Ouvrir plusieurs fichiers");
+        ControlMenu quit = new ControlMenu("Quitter");
         
         this.add(openF);
         this.add(openFs);

@@ -7,9 +7,8 @@ package project.main;
 
 //import project.window.MyFrame;
 
-import project.window.Window;
+import project.window.MyFrame;
 
-import javax.swing.SwingUtilities;
 import java.net.MalformedURLException;
 
 /**
@@ -18,11 +17,11 @@ import java.net.MalformedURLException;
  */
 public class Main {
     public static void main(String[] args) throws MalformedURLException {
-		//MyFrame frame = new MyFrame();
-	    SwingUtilities.invokeLater( () ->
-		    new Window("KAQ - MultiMedia Player", 1100, 700)
-				.init()
-				.create()
-	    );
+		MyFrame frame = new MyFrame();
+//	    SwingUtilities.invokeLater( () ->
+//		    new Window("KAQ - MultiMedia Player", 1100, 700)
+//				.init()
+//				.create()
+//	    );
     }
 }

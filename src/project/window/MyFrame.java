@@ -8,12 +8,13 @@ package project.window;
 import project.window.panels.NorthMenu;
 import project.window.panels.SouthBar;
 
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.net.MalformedURLException;
+import javax.swing.Box;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,7 +26,7 @@ public class MyFrame extends JFrame {
         this.setLayout(new BorderLayout(5, 5));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JMenuBar northMenu = new NorthMenu();
-        JMenuBar southBar = new SouthBar();
+        Box southBar = new SouthBar();
         JPanel center = new JPanel();
         center.setBackground(Color.red);
         this.getContentPane().add(center, BorderLayout.CENTER);
