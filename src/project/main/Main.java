@@ -9,12 +9,16 @@ import project.window.MyFrame;
 
 import javax.swing.SwingUtilities;
 import java.net.MalformedURLException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  *
  * @author adrylen
  */
 public class Main {
+	private Main() {}
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			try {
@@ -23,7 +27,7 @@ public class Main {
 					.create();
 //					.testPlayer();
 			} catch (MalformedURLException e) {
-				e.printStackTrace();
+				Logger.getLogger(Main.class.getName()).log(Level.WARNING, "MalformedURLException in process", e);
 			}
 		});
 	}
