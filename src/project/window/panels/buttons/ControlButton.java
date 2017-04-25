@@ -1,7 +1,10 @@
 package project.window.panels.buttons;
 
+import lombok.Getter;
 import project.media.PlayerManager;
+import project.window.MainFrame;
 import project.window.events.ActionPlayerControls;
+import project.window.panels.SouthBar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -14,6 +17,7 @@ public class ControlButton extends JButton{
     private Icon icone1, icone2;
     private boolean bool;
 	private PlayerManager playerManager;
+	private @Getter	MainFrame window;
 
 	public ControlButton(Icon icone){
         this(icone,null);
@@ -56,7 +60,12 @@ public class ControlButton extends JButton{
 	}
 
 	public ControlButton setUpControl(String s) {
-    	this.addActionListener(new ActionPlayerControls(s, this.playerManager));
+    	this.addMouseListener(new ActionPlayerControls(s, this.playerManager));
+    	return this;
+	}
+
+	public ControlButton attachWindow(MainFrame window) {
+    	this.window = window;
     	return this;
 	}
 }

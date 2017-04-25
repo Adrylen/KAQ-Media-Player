@@ -6,19 +6,24 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
+import project.main.Main;
 import project.media.PlayerManager;
 import project.media.files.PathFile;
 
 import javax.swing.ImageIcon;
+
+import project.window.MainFrame;
 import project.window.panels.buttons.ControlButton;
 import project.window.panels.buttons.SoundSlider;
 import java.io.IOException;
 
 public class SouthBar extends Box{
+	private final MainFrame window;
 	private PlayerManager playerManager;
 
-	public SouthBar() throws MalformedURLException {
+	public SouthBar(MainFrame window) throws MalformedURLException {
 		super(BoxLayout.X_AXIS);
+		this.window = window;
 	}
 
 	public SouthBar create() {
@@ -69,7 +74,8 @@ public class SouthBar extends Box{
 				.attachPlayer(this.playerManager)
 				.setUpControl("fullscreen"),
 	        playlist = new ControlButton(new ImageIcon(playlistP.getPath()), true)
-				.attachPlayer(this.playerManager)
+				.attachWindow(this.window)
+		        .attachPlayer(this.playerManager)
 				.setUpControl("playlist"),
 	        mute = new ControlButton(new ImageIcon(muteP.getPath()), new ImageIcon(soundP.getPath()))
 				.attachPlayer(this.playerManager)

@@ -2,7 +2,6 @@ package project.window;
 
 import lombok.Getter;
 import project.media.PlayerManager;
-import project.media.files.PathFile;
 import project.window.panels.MediaPanel;
 import project.window.panels.NorthMenu;
 import project.window.panels.PlaylistPanel;
@@ -14,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import javax.swing.Box;
 
@@ -22,23 +20,22 @@ public class MainFrame extends JFrame {
 	private final int MINIMUM_WIDTH = 600;
 	private final int MINIMUM_HEIGHT = 400;
 
-	private JScrollPane playlistPanel;
+	private JScrollPane playlistScrollPane;
+	private @Getter PlaylistPanel playlistPanel;
 	private JMenuBar northMenu;
 	private Box southBar;
 	private MediaPanel mediaPanel;
 	private @Getter PlayerManager playerManager;
 
-	private final int w = 800, h = 600;
-
     public MainFrame() throws MalformedURLException {
     	super("KAQMediaPlayer");
         this.northMenu = new NorthMenu(this);
-        this.southBar = new SouthBar();
+        this.southBar = new SouthBar(this);
 
         this.mediaPanel = new MediaPanel();
+	    this.playlistPanel = new PlaylistPanel(MINIMUM_WIDTH/4, MINIMUM_HEIGHT);
 
-        this.playlistPanel = new JScrollPane(
-        	new PlaylistPanel(w/4, h),
+        this.playlistScrollPane = new JScrollPane(this.playlistPanel,
 	        ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 	        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
@@ -50,10 +47,10 @@ public class MainFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout(5, 5));
-        this.setSize(w,h);
         this.setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
 
-        this.playlistPanel.setPreferredSize(new Dimension(w/4, h));
+        this.playlistScrollPane.setPreferredSize(new Dimension(MINIMUM_WIDTH/4, MINIMUM_HEIGHT));
+        this.playlistPanel.attachParentPane(this.playlistScrollPane).attachWindow(this);
 
 	    ((SouthBar)this.southBar).attachPlayer(this.playerManager).create();
 
@@ -62,7 +59,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame create() {
         this.add(northMenu, BorderLayout.NORTH);
-        this.add(playlistPanel, BorderLayout.WEST);
+//        this.add(playlistScrollPane, BorderLayout.WEST);
         this.add(mediaPanel, BorderLayout.CENTER);
         this.add(southBar, BorderLayout.SOUTH);
 
