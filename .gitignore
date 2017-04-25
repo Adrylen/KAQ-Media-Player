@@ -13,11 +13,12 @@ hs_err_pid*
 
 # NetBeans ignore
 build/
+dist/
+nbproject/
 build.xml
 manifest.mf
-nbproject/
 
 # IDEA ignore
 .idea/
-Project.iml
 out/
+Project.iml

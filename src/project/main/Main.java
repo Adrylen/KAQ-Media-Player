@@ -5,18 +5,26 @@
  */
 package project.main;
 
+import project.window.MyFrame;
+
+import javax.swing.SwingUtilities;
+import java.net.MalformedURLException;
+
 /**
  *
  * @author adrylen
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-	// TODO code application logic here
-	System.out.println("Hello World !");
-    }
-    
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(() -> {
+			try {
+				new MyFrame()
+					.init()
+					.create();
+//					.testPlayer();
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		});
+	}
 }
