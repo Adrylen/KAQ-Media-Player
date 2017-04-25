@@ -1,11 +1,3 @@
-/*
-    Java Project
-    Project
-    Package : project.path
-
-    Created by adrylen on 22/03/17.
-*/
-
 package project.media.files;
 
 import java.io.IOException;

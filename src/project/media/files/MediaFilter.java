@@ -1,10 +1,3 @@
-/*
- *   Java Project
- *   Project
- *   Package : project.media.files
- *   Created by adrylen on 25/04/17.
-*/
-
 package project.media.files;
 
 import javax.swing.filechooser.FileFilter;

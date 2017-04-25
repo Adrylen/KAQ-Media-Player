@@ -1,11 +1,3 @@
-/*
-    Java Project
-    Project
-    Package : project.test
-
-    Created by adrylen on 22/03/17.
-*/
-
 package project.test;
 
 import junit.framework.TestCase;

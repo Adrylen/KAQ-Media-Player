@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project.window.panels.buttons;
 
 import project.media.PlayerManager;
@@ -15,10 +10,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-/**
- *
- * @author Qwen
- */
 public class ControlButton extends JButton{
     private Icon icone1, icone2;
     private boolean bool;

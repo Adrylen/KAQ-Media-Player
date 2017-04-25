@@ -1,10 +1,3 @@
-/*
- *   Java Project
- *   Project
- *   Package : project.media
- *   Created by adrylen on 06/04/17.
-*/
-
 package project.media;
 
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;

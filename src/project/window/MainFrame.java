@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project.window;
 
-import lombok.Data;
 import lombok.Getter;
 import project.media.PlayerManager;
 import project.media.files.PathFile;
@@ -24,11 +18,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import javax.swing.Box;
 
-/**
- *
- * @author Qwen
- */
-public class MyFrame extends JFrame {
+public class MainFrame extends JFrame {
 	private final int MINIMUM_WIDTH = 600;
 	private final int MINIMUM_HEIGHT = 400;
 
@@ -40,7 +30,7 @@ public class MyFrame extends JFrame {
 
 	private final int w = 800, h = 600;
 
-    public MyFrame() throws MalformedURLException {
+    public MainFrame() throws MalformedURLException {
     	super("KAQMediaPlayer");
         this.northMenu = new NorthMenu(this);
         this.southBar = new SouthBar();
@@ -56,7 +46,7 @@ public class MyFrame extends JFrame {
         this.playerManager = new PlayerManager(this, mediaPanel);
     }
 
-    public MyFrame init() {
+    public MainFrame init() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout(5, 5));
@@ -70,7 +60,7 @@ public class MyFrame extends JFrame {
         return this;
     }
 
-    public MyFrame create() {
+    public MainFrame create() {
         this.add(northMenu, BorderLayout.NORTH);
         this.add(playlistPanel, BorderLayout.WEST);
         this.add(mediaPanel, BorderLayout.CENTER);
@@ -79,14 +69,5 @@ public class MyFrame extends JFrame {
         this.setVisible(true);
 
         return this;
-    }
-
-    public MyFrame testPlayer() {
-	    try {
-		    playerManager.setMediaComponent(new PathFile("file:///home/adrylen/Videos/mozart5mb.mp4",false));
-	    } catch (IOException e) {
-		    e.printStackTrace();
-	    }
-	    return this;
     }
 }

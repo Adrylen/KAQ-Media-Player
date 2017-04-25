@@ -1,10 +1,3 @@
-/*
- *   Java Project
- *   Project
- *   Package : project.window.events
- *   Created by adrylen on 21/04/17.
-*/
-
 package project.window.events;
 
 import project.media.PlayerManager;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project.window.panels;
 
 import java.awt.Dimension;
@@ -19,10 +14,6 @@ import project.window.panels.buttons.ControlButton;
 import project.window.panels.buttons.SoundSlider;
 import java.io.IOException;
 
-/**
- *
- * @author Qwen
- */
 public class SouthBar extends Box{
 	private PlayerManager playerManager;
 

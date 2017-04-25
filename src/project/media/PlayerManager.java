@@ -1,13 +1,5 @@
-/*
- *   Java Project
- *   Project
- *   Package : project.media
- *   Created by adrylen on 06/04/17.
-*/
-
 package project.media;
 
-import lombok.Setter;
 import project.media.files.PathFile;
 import project.window.panels.MediaPanel;
 

@@ -1,10 +1,3 @@
-/*
- *   Java Project
- *   Project
- *   Package : project.window.panels
- *   Created by adrylen on 27/03/17.
-*/
-
 package project.window.panels;
 
 import javax.swing.BorderFactory;
