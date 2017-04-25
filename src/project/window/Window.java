@@ -33,7 +33,7 @@ public class Window extends JFrame {
 			ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
 		);
 
-		this.menus = new NorthMenu();
+//		this.menus = new NorthMenu(this);
 		//this.actions = new SouthBar();
 
 		this.title = title;

@@ -7,7 +7,8 @@
 
 package project.media;
 
-import project.path.PathFile;
+import lombok.Setter;
+import project.media.files.PathFile;
 import project.window.panels.MediaPanel;
 
 import javax.swing.JFrame;
@@ -23,9 +24,15 @@ public class PlayerManager {
 		this.mediaPanel = mediaPanel;
 	}
 
-	public void newComponent(PathFile pathFile) {
+	public void setMediaComponent(PathFile pathFile) {
+		if(this.mediaComponent != null) {
+			this.mediaComponent.remove(this.mediaComponent);
+		}
 		this.mediaComponent = new MediaComponent(pathFile.getPath()).setMediaPanel(frame);
 		this.mediaPanel.add(this.mediaComponent, BorderLayout.CENTER);
-		this.mediaComponent.play();
+	}
+
+	public MediaComponent getMediaComponent() {
+		return this.mediaComponent;
 	}
 }

@@ -5,6 +5,9 @@
  */
 package project.window.panels.buttons;
 
+import project.media.PlayerManager;
+import project.window.events.ActionPlayerControls;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,7 +22,9 @@ import javax.swing.JButton;
 public class ControlButton extends JButton{
     private Icon icone1, icone2;
     private boolean bool;
-    public ControlButton(Icon icone){
+	private PlayerManager playerManager;
+
+	public ControlButton(Icon icone){
         this(icone,null);
     }
     public ControlButton(Icon icone, boolean bool){
@@ -38,7 +43,6 @@ public class ControlButton extends JButton{
         this.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("OK");
                 if(icone2 != null) {
                     if(((JButton)e.getSource()).getIcon().equals(icone1)) {
                         ((JButton)e.getSource()).setIcon(icone2);
@@ -54,4 +58,14 @@ public class ControlButton extends JButton{
         this.setEnabled(!bool);
         bool = !bool;
     }
+
+	public ControlButton attachPlayer(PlayerManager playerManager) {
+    	this.playerManager = playerManager;
+    	return this;
+	}
+
+	public ControlButton setUpControl(String s) {
+    	this.addActionListener(new ActionPlayerControls(s, this.playerManager));
+    	return this;
+	}
 }

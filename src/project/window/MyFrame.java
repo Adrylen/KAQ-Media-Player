@@ -5,8 +5,10 @@
  */
 package project.window;
 
+import lombok.Data;
+import lombok.Getter;
 import project.media.PlayerManager;
-import project.path.PathFile;
+import project.media.files.PathFile;
 import project.window.panels.MediaPanel;
 import project.window.panels.NorthMenu;
 import project.window.panels.PlaylistPanel;
@@ -21,7 +23,6 @@ import java.awt.Dimension;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import javax.swing.Box;
-import javax.swing.JPanel;
 
 /**
  *
@@ -35,19 +36,19 @@ public class MyFrame extends JFrame {
 	private JMenuBar northMenu;
 	private Box southBar;
 	private MediaPanel mediaPanel;
-	private PlayerManager playerManager;
+	private @Getter PlayerManager playerManager;
 
-	private final int width = 800, height = 600;
+	private final int w = 800, h = 600;
 
     public MyFrame() throws MalformedURLException {
     	super("KAQMediaPlayer");
-        this.northMenu = new NorthMenu();
+        this.northMenu = new NorthMenu(this);
         this.southBar = new SouthBar();
 
         this.mediaPanel = new MediaPanel();
 
         this.playlistPanel = new JScrollPane(
-        	new PlaylistPanel(width/4, height),
+        	new PlaylistPanel(w/4, h),
 	        ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 	        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
@@ -59,10 +60,12 @@ public class MyFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout(5, 5));
-        this.setSize(width,height);
+        this.setSize(w,h);
         this.setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
 
-        this.playlistPanel.setPreferredSize(new Dimension(width/4, height));
+        this.playlistPanel.setPreferredSize(new Dimension(w/4, h));
+
+	    ((SouthBar)this.southBar).attachPlayer(this.playerManager).create();
 
         return this;
     }
@@ -80,7 +83,7 @@ public class MyFrame extends JFrame {
 
     public MyFrame testPlayer() {
 	    try {
-		    playerManager.newComponent(new PathFile("file:///home/adrylen/Videos/mozart5mb.mp4",false));
+		    playerManager.setMediaComponent(new PathFile("file:///home/adrylen/Videos/mozart5mb.mp4",false));
 	    } catch (IOException e) {
 		    e.printStackTrace();
 	    }

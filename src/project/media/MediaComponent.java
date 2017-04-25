@@ -20,6 +20,7 @@ public class MediaComponent extends EmbeddedMediaPlayerComponent {
 
 	public MediaComponent(String file) {
 		this.file = file;
+		this.getMediaPlayer().setPlaySubItems(true);
 	}
 
 	public MediaComponent setMediaPanel(JFrame frame) {
@@ -27,15 +28,16 @@ public class MediaComponent extends EmbeddedMediaPlayerComponent {
 		return this;
 	}
 
-	public MediaComponent play() {
-		this.getMediaPlayer().setPlaySubItems(true);
+	public void play() {
 		this.getMediaPlayer().playMedia(this.file);
-		return this;
+	}
+
+	public void pause() {
+		this.getMediaPlayer().pause();
 	}
 
 	@Override
 	public void playing(MediaPlayer mediaPlayer) {
-
 		SwingUtilities.invokeLater(() -> frame.setTitle(String.format(
 			"Media Player - %s",
 			this.getMediaPlayer().getMediaMeta().getTitle()
