@@ -49,6 +49,8 @@ public class ControlButton extends JButton{
             }
         });
     }
+
+        
     
     public void toggleState() {
         this.setEnabled(!bool);

@@ -5,7 +5,9 @@
  */
 package project.window.panels;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.net.MalformedURLException;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -16,6 +18,7 @@ import javax.swing.ImageIcon;
 import project.window.panels.buttons.ControlButton;
 import project.window.panels.buttons.SoundSlider;
 import java.io.IOException;
+import javax.swing.AbstractAction;
 
 /**
  *
@@ -57,9 +60,16 @@ public class SouthBar extends Box{
         ControlButton repeat = new ControlButton(new ImageIcon(repeatP.getPath()), true);
         ControlButton fullscreen = new ControlButton(new ImageIcon(fullscreenP.getPath()), true);
         ControlButton playlist = new ControlButton(new ImageIcon(playlistP.getPath()), true);
-        ControlButton mute = new ControlButton(new ImageIcon(muteP.getPath()), new ImageIcon(soundP.getPath()));
+        ControlButton mute = new ControlButton(new ImageIcon(soundP.getPath()), new ImageIcon(muteP.getPath()));
         
         SoundSlider slider = new SoundSlider(0, 100, 20);
+        mute.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                slider.toggleMute();
+            }
+        });
+        //slider.setLayout(slider, new BoxLayout(BoxLayout.LINE_ALIGNEMENT));
 
         this.setBorder(BorderFactory.createEmptyBorder(0, 3, 5, 0));
 
@@ -76,6 +86,7 @@ public class SouthBar extends Box{
         this.add(playlist);
         this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(mute);
+        this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(slider);
     }
 
