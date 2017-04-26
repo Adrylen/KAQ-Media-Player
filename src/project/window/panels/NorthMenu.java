@@ -1,26 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project.window.panels;
 
+import project.window.MainFrame;
 import project.window.menus.MediaMenu;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import project.window.menus.AudioMenu;
 import project.window.menus.LectureMenu;
 import project.window.menus.OptionMenu;
 
-/**
- *
- * @author Qwen
- */
 public class NorthMenu extends JMenuBar{
     
-    public NorthMenu(){
+    public NorthMenu(MainFrame window){
         
-        MediaMenu media = new MediaMenu("Media");
+        MediaMenu media = new MediaMenu(window, "Media");
         LectureMenu lecture = new LectureMenu("Lecture");
         AudioMenu audio = new AudioMenu("Audio");
         OptionMenu options = new OptionMenu("Options");

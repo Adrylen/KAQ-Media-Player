@@ -1,10 +1,3 @@
-/*
- *   Java Project
- *   Project
- *   Package : project.window.panels
- *   Created by adrylen on 06/04/17.
-*/
-
 package project.window.panels;
 
 import javax.swing.JPanel;

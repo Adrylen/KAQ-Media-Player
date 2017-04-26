@@ -1,30 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project.window.panels;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.net.MalformedURLException;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import project.path.PathFile;
+
+import lombok.Getter;
+import project.main.Main;
+import project.media.PlayerManager;
+import project.media.files.PathFile;
 
 import javax.swing.ImageIcon;
+
+import project.window.MainFrame;
 import project.window.panels.buttons.ControlButton;
 import project.window.panels.buttons.SoundSlider;
 import java.io.IOException;
+import javax.swing.AbstractAction;
 
-/**
- *
- * @author Qwen
- */
 public class SouthBar extends Box{
-    public SouthBar() throws MalformedURLException{
-        super(BoxLayout.X_AXIS);
+	private final MainFrame window;
+	private PlayerManager playerManager;
+	private @Getter ControlButton play;
 
+	public SouthBar(MainFrame window) throws MalformedURLException {
+		super(BoxLayout.X_AXIS);
+		this.window = window;
+	}
+
+	public SouthBar create() {
         PathFile playP = null, pauseP = null,
             backP = null, stopP = null, nextP = null,
             randomP = null, repeatP = null,
@@ -49,17 +56,44 @@ public class SouthBar extends Box{
 
         //hide/show repeat fullscreen
 
-        ControlButton play = new ControlButton(new ImageIcon(playP.getPath()), new ImageIcon(pauseP.getPath()));
-        ControlButton back = new ControlButton(new ImageIcon(backP.getPath()));
-        ControlButton stop = new ControlButton(new ImageIcon(stopP.getPath()));
-        ControlButton next = new ControlButton(new ImageIcon(nextP.getPath()));
-        ControlButton random = new ControlButton(new ImageIcon(randomP.getPath()), true);
-        ControlButton repeat = new ControlButton(new ImageIcon(repeatP.getPath()), true);
-        ControlButton fullscreen = new ControlButton(new ImageIcon(fullscreenP.getPath()), true);
-        ControlButton playlist = new ControlButton(new ImageIcon(playlistP.getPath()), true);
-        ControlButton mute = new ControlButton(new ImageIcon(muteP.getPath()), new ImageIcon(soundP.getPath()));
-        
+        ControlButton
+	        play = new ControlButton(new ImageIcon(playP.getPath()), new ImageIcon(pauseP.getPath()))
+				.attachPlayer(this.playerManager)
+				.setUpControl("play"),
+	        back = new ControlButton(new ImageIcon(backP.getPath()))
+				.attachPlayer(this.playerManager)
+				.setUpControl("back"),
+	        stop = new ControlButton(new ImageIcon(stopP.getPath()))
+				.attachPlayer(this.playerManager)
+				.setUpControl("stop"),
+	        next = new ControlButton(new ImageIcon(nextP.getPath()))
+				.attachPlayer(this.playerManager)
+				.setUpControl("next"),
+	        random = new ControlButton(new ImageIcon(randomP.getPath()), true)
+				.attachPlayer(this.playerManager)
+				.setUpControl("random"),
+	        repeat = new ControlButton(new ImageIcon(repeatP.getPath()), true)
+				.attachPlayer(this.playerManager)
+				.setUpControl("repeat"),
+	        fullscreen = new ControlButton(new ImageIcon(fullscreenP.getPath()), true)
+				.attachPlayer(this.playerManager)
+				.setUpControl("fullscreen"),
+	        playlist = new ControlButton(new ImageIcon(playlistP.getPath()), true)
+				.attachWindow(this.window)
+		        .attachPlayer(this.playerManager)
+				.setUpControl("playlist"),
+	        mute = new ControlButton(new ImageIcon(muteP.getPath()), new ImageIcon(soundP.getPath()))
+				.attachPlayer(this.playerManager)
+				.setUpControl("mute");
+
         SoundSlider slider = new SoundSlider(0, 100, 20);
+        mute.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                slider.toggleMute();
+            }
+        });
+        //slider.setLayout(slider, new BoxLayout(BoxLayout.LINE_ALIGNEMENT));
 
         this.setBorder(BorderFactory.createEmptyBorder(0, 3, 5, 0));
 
@@ -76,7 +110,16 @@ public class SouthBar extends Box{
         this.add(playlist);
         this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(mute);
+        this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(slider);
+
+        this.play = play;
+
+        return this;
     }
 
+    public SouthBar attachPlayer(PlayerManager playerManager) {
+        this.playerManager = playerManager;
+        return this;
+    }
 }

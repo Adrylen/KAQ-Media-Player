@@ -1,12 +1,4 @@
-/*
-    Java Project
-    Project
-    Package : project.path
-
-    Created by adrylen on 22/03/17.
-*/
-
-package project.path;
+package project.media.files;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -17,7 +9,7 @@ public class PathFile {
 	private URL url;
 
 	public PathFile(String path, boolean relative) throws IOException {
-		this(new URL(relative ? "file://"+new File(".").getCanonicalPath()+path : path));
+		this(new URL("file://" + (relative ? new File(".").getCanonicalPath()+path : path)));
 	}
 
 	public PathFile(URL url) {
