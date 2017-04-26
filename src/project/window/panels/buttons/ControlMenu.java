@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project.window.panels.buttons;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
 
-/**
- *
- * @author Qwen
- */
 public class ControlMenu extends JMenuItem{
     private String str1, str2;
     public ControlMenu(String str){

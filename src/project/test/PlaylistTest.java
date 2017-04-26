@@ -1,11 +1,3 @@
-/*
-    Java Project
-    Project
-    Package : project.test
-
-    Created by adrylen on 22/03/17.
-*/
-
 package project.test;
 
 import junit.framework.TestCase;
@@ -14,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import project.path.PathFile;
-import project.path.Playlist;
+import project.media.files.PathFile;
+import project.media.files.Playlist;
 
 import java.io.IOException;
 import java.util.Arrays;

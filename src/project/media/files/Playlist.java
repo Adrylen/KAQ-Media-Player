@@ -1,12 +1,4 @@
-/*
-    Java Project
-    Project
-    Package : project.path
-
-    Created by adrylen on 22/03/17.
-*/
-
-package project.path;
+package project.media.files;
 
 import java.util.Collection;
 import java.util.Iterator;

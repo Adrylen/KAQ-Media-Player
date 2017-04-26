@@ -1,10 +1,3 @@
-/*
- *   Java Project
- *   Project
- *   Package : project.media
- *   Created by adrylen on 06/04/17.
-*/
-
 package project.media;
 
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
@@ -20,6 +13,7 @@ public class MediaComponent extends EmbeddedMediaPlayerComponent {
 
 	public MediaComponent(String file) {
 		this.file = file;
+		this.getMediaPlayer().setPlaySubItems(true);
 	}
 
 	public MediaComponent setMediaPanel(JFrame frame) {
@@ -27,15 +21,20 @@ public class MediaComponent extends EmbeddedMediaPlayerComponent {
 		return this;
 	}
 
-	public MediaComponent play() {
-		this.getMediaPlayer().setPlaySubItems(true);
-		this.getMediaPlayer().playMedia(this.file);
-		return this;
+	public void play() {
+		if(this.getMediaPlayer().isPlaying()) {
+			this.getMediaPlayer().pause();
+		} else {
+			this.getMediaPlayer().playMedia(this.file);
+		}
+	}
+
+	public void pause() {
+		this.getMediaPlayer().pause();
 	}
 
 	@Override
 	public void playing(MediaPlayer mediaPlayer) {
-
 		SwingUtilities.invokeLater(() -> frame.setTitle(String.format(
 			"Media Player - %s",
 			this.getMediaPlayer().getMediaMeta().getTitle()

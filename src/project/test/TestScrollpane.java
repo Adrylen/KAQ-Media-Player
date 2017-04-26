@@ -1,10 +1,3 @@
-/*
- *   Java Project
- *   Project
- *   Package : project.test
- *   Created by adrylen on 27/03/17.
-*/
-
 package project.test;
 
 import java.awt.BorderLayout;
