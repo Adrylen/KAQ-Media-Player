@@ -12,13 +12,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.io.IOException;
 
 public class PlaylistPanel extends JPanel {
 	private boolean visible;
 	private JScrollPane playlistScrollPane;
 	private MainFrame mainFrame;
 
-	public PlaylistPanel(int width, int height) {
+	public PlaylistPanel(int width, int height) throws IOException {
 		GridBagConstraints placement = new GridBagConstraints();
 		placement.anchor = GridBagConstraints.FIRST_LINE_START;
 		placement.weighty = 1;
@@ -27,12 +28,8 @@ public class PlaylistPanel extends JPanel {
 		int nb = 10;
 		this.setLayout(new GridBagLayout());
 		for(int i = 0; i < nb; ++i) {
-			JPanel panel = new JPanel();
-			panel.add(new JLabel("Test : "+i));
+                        PlaylistFilePanel panel = new PlaylistFilePanel(width, i, nb);
 			placement.gridy = i;
-			panel.setPreferredSize(new Dimension(width-2, 60));
-			panel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-
 			this.add(panel, placement);
 		}
 		this.setAutoscrolls(true);
