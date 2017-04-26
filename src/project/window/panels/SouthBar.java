@@ -6,6 +6,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
+import lombok.Getter;
 import project.main.Main;
 import project.media.PlayerManager;
 import project.media.files.PathFile;
@@ -20,6 +21,7 @@ import java.io.IOException;
 public class SouthBar extends Box{
 	private final MainFrame window;
 	private PlayerManager playerManager;
+	private @Getter ControlButton play;
 
 	public SouthBar(MainFrame window) throws MalformedURLException {
 		super(BoxLayout.X_AXIS);
@@ -99,6 +101,8 @@ public class SouthBar extends Box{
         this.add(Box.createRigidArea(new Dimension(10, 0)));
         this.add(mute);
         this.add(slider);
+
+        this.play = play;
 
         return this;
     }

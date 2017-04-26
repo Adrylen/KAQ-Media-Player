@@ -22,7 +22,11 @@ public class MediaComponent extends EmbeddedMediaPlayerComponent {
 	}
 
 	public void play() {
-		this.getMediaPlayer().playMedia(this.file);
+		if(this.getMediaPlayer().isPlaying()) {
+			this.getMediaPlayer().pause();
+		} else {
+			this.getMediaPlayer().playMedia(this.file);
+		}
 	}
 
 	public void pause() {

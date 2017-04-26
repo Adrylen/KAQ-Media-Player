@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
 	private JScrollPane playlistScrollPane;
 	private @Getter PlaylistPanel playlistPanel;
 	private JMenuBar northMenu;
-	private Box southBar;
+	private @Getter Box southBar;
 	private MediaPanel mediaPanel;
 	private @Getter PlayerManager playerManager;
 

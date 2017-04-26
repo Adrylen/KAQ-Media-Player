@@ -38,15 +38,19 @@ public class ControlButton extends JButton{
         this.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(icone2 != null) {
-                    if(((JButton)e.getSource()).getIcon().equals(icone1)) {
-                        ((JButton)e.getSource()).setIcon(icone2);
-                    } else if (((JButton)e.getSource()).getIcon().equals(icone2)) {
-                        ((JButton)e.getSource()).setIcon(icone1);
-                    }
-                }
+	            ((ControlButton)e.getSource()).switchIcon();
             }
         });
+    }
+
+    public void switchIcon() {
+	    if(icone2 != null) {
+		    if(this.getIcon().equals(icone1)) {
+			    this.setIcon(icone2);
+		    } else if (this.getIcon().equals(icone2)) {
+			    this.setIcon(icone1);
+		    }
+	    }
     }
     
     public void toggleState() {

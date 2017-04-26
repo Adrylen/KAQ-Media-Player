@@ -10,6 +10,8 @@ import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 
 import project.media.files.MediaFilter;
+import project.window.panels.SouthBar;
+import project.window.panels.buttons.ControlButton;
 import project.window.panels.buttons.ControlMenu;
 
 import java.awt.event.ActionEvent;
@@ -40,6 +42,7 @@ public class MediaMenu extends JMenu{
 					try {
 						window.getPlayerManager().setMediaComponent(new PathFile(fileChooser.getSelectedFile().getPath(),false));
 						SwingUtilities.updateComponentTreeUI(window);
+						((SouthBar)window.getSouthBar()).getPlay().switchIcon();
 						window.getPlayerManager().getMediaComponent().play();
 					} catch (IOException e) {
 						e.printStackTrace();
