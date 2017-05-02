@@ -13,7 +13,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 
 public class MainFrame extends JFrame {
@@ -33,7 +36,11 @@ public class MainFrame extends JFrame {
         this.southBar = new SouthBar(this);
 
         this.mediaPanel = new MediaPanel();
-	    this.playlistPanel = new PlaylistPanel(MINIMUM_WIDTH/4, MINIMUM_HEIGHT);
+		try {
+			this.playlistPanel = new PlaylistPanel(MINIMUM_WIDTH/4, MINIMUM_HEIGHT);
+		} catch (IOException ex) {
+			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
         this.playlistScrollPane = new JScrollPane(this.playlistPanel,
 	        ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
