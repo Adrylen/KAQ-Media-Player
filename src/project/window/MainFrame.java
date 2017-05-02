@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import javax.swing.Box;
 
@@ -27,7 +28,7 @@ public class MainFrame extends JFrame {
 	private MediaPanel mediaPanel;
 	private @Getter PlayerManager playerManager;
 
-    public MainFrame() throws MalformedURLException {
+    public MainFrame() throws IOException {
     	super("KAQMediaPlayer");
         this.northMenu = new NorthMenu(this);
         this.southBar = new SouthBar(this);
