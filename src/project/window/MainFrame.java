@@ -36,12 +36,9 @@ public class MainFrame extends JFrame {
         this.southBar = new SouthBar(this);
 
         this.mediaPanel = new MediaPanel();
-		try {
-			this.playlistPanel = new PlaylistPanel(MINIMUM_WIDTH/4, MINIMUM_HEIGHT);
-		} catch (IOException ex) {
-			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
+		
+		this.playlistPanel = new PlaylistPanel(MINIMUM_WIDTH/4, MINIMUM_HEIGHT);
+		
         this.playlistScrollPane = new JScrollPane(this.playlistPanel,
 	        ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 	        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
