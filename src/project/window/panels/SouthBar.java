@@ -82,7 +82,7 @@ public class SouthBar extends Box{
 				.attachWindow(this.window)
 		        .attachPlayer(this.playerManager)
 				.setUpControl("playlist"),
-	        mute = new ControlButton(new ImageIcon(muteP.getPath()), new ImageIcon(soundP.getPath()))
+	        mute = new ControlButton(new ImageIcon(soundP.getPath()), new ImageIcon(muteP.getPath()))
 				.attachPlayer(this.playerManager)
 				.setUpControl("mute");
 
