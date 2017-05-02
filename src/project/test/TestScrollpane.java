@@ -26,22 +26,13 @@ public class TestScrollpane {
 
 		frame.add(new JScrollPane(listContainer), BorderLayout.CENTER);
 		JButton button = new JButton("Add");
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				final JPanel newPanel = new JPanel();
-				newPanel.add(new JLabel("Label " + i++));
-				listContainer.add(newPanel);
-				listContainer.revalidate();
-				// Scroll down to last added panel
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						newPanel.scrollRectToVisible(newPanel.getBounds());
-					}
-				});
-			}
+		button.addActionListener(e -> {
+			final JPanel newPanel = new JPanel();
+			newPanel.add(new JLabel("Label " + i++));
+			listContainer.add(newPanel);
+			listContainer.revalidate();
+			// Scroll down to last added panel
+			SwingUtilities.invokeLater(() -> newPanel.scrollRectToVisible(newPanel.getBounds()));
 		});
 		frame.add(button, BorderLayout.PAGE_END);
 
@@ -65,12 +56,6 @@ public class TestScrollpane {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		SwingUtilities.invokeLater(new Runnable() {
-
-			@Override
-			public void run() {
-				new TestScrollpane().initUI();
-			}
-		});
+		SwingUtilities.invokeLater(() -> new TestScrollpane().initUI());
 	}
 }

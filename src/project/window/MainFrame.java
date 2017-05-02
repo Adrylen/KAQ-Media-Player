@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
 	private MediaPanel mediaPanel;
 	private @Getter PlayerManager playerManager;
 
-    public MainFrame() throws MalformedURLException {
+    public MainFrame() throws IOException {
     	super("KAQMediaPlayer");
         this.northMenu = new NorthMenu(this);
         this.southBar = new SouthBar(this);

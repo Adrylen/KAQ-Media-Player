@@ -15,7 +15,7 @@ import java.awt.GridBagLayout;
 import java.io.IOException;
 
 public class PlaylistPanel extends JPanel {
-	private boolean visible;
+	private boolean isVisible;
 	private JScrollPane playlistScrollPane;
 	private MainFrame mainFrame;
 
@@ -23,20 +23,20 @@ public class PlaylistPanel extends JPanel {
 		GridBagConstraints placement = new GridBagConstraints();
 		placement.anchor = GridBagConstraints.FIRST_LINE_START;
 		placement.weighty = 1;
-		this.visible = false;
+		this.isVisible = false;
 
 		int nb = 10;
 		this.setLayout(new GridBagLayout());
-		for(int i = 0; i < nb; ++i) {
+/*		for(int i = 0; i < nb; ++i) {
                         PlaylistFilePanel panel = new PlaylistFilePanel(width, i, nb);
 			placement.gridy = i;
 			this.add(panel, placement);
-		}
+		}*/
 		this.setAutoscrolls(true);
 	}
 
 	public void togglePanel() {
-		if(this.visible = !this.visible) {
+		if(this.isVisible = !this.isVisible) {
 			this.mainFrame.add(this.playlistScrollPane, BorderLayout.WEST);
 		} else {
 			this.mainFrame.remove(this.playlistScrollPane);
