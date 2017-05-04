@@ -1,11 +1,13 @@
 package project.media;
 
+import project.media.files.PathFile;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.MediaPlayer;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import java.io.File;
 
 public class MediaComponent extends EmbeddedMediaPlayerComponent {
 	private JFrame frame;
@@ -14,6 +16,11 @@ public class MediaComponent extends EmbeddedMediaPlayerComponent {
 	public MediaComponent(String file) {
 		this.file = file;
 		this.getMediaPlayer().setPlaySubItems(true);
+//		try {
+//			this.getMediaPlayer().setSubTitleFile("C:\\Users\\AdrienMartinez\\Documents\\Project_KAQ\\assets\\subtitles\\test.srt");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		};
 	}
 
 	public MediaComponent setMediaPanel(JFrame frame) {

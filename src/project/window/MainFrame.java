@@ -1,11 +1,13 @@
 package project.window;
 
 import lombok.Getter;
+import project.main.Main;
 import project.media.PlayerManager;
 import project.window.panels.MediaPanel;
 import project.window.panels.NorthMenu;
 import project.window.panels.PlaylistPanel;
 import project.window.panels.SouthBar;
+import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -46,7 +48,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame init() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout(5, 5));
         this.setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
 
@@ -67,5 +69,13 @@ public class MainFrame extends JFrame {
         this.setVisible(true);
 
         return this;
+    }
+
+    public MainFrame test() {
+    	this.playerManager
+		    .setMediaComponent("C:\\Users\\AdrienMartinez\\Documents\\Project_KAQ\\assets\\videos\\bob_video.mp4")
+		    .getMediaComponent()
+		    .play();
+	    return this;
     }
 }

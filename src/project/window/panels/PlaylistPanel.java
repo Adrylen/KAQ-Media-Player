@@ -27,11 +27,11 @@ public class PlaylistPanel extends JPanel {
 
 		int nb = 10;
 		this.setLayout(new GridBagLayout());
-/*		for(int i = 0; i < nb; ++i) {
+		for(int i = 0; i < nb; ++i) {
                         PlaylistFilePanel panel = new PlaylistFilePanel(width, i, nb);
 			placement.gridy = i;
 			this.add(panel, placement);
-		}*/
+		}
 		this.setAutoscrolls(true);
 	}
 

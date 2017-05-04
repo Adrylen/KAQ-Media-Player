@@ -31,6 +31,6 @@ public class PathFile {
 	}
 
 	public String getPath() {
-		return this.url.getPath();
+		return this.url.getAuthority() + this.url.getPath();
 	}
 }

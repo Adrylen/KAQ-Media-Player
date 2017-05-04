@@ -39,14 +39,10 @@ public class MediaMenu extends JMenu{
 				fileChooser.setFileFilter(new MediaFilter("MPEG-4 File", ".mp4"));
 				fileChooser.showOpenDialog(null);
 				if(fileChooser.getSelectedFile() != null) {
-					try {
-						window.getPlayerManager().setMediaComponent(new PathFile(fileChooser.getSelectedFile().getPath(),false));
-						SwingUtilities.updateComponentTreeUI(window);
-						((SouthBar)window.getSouthBar()).getPlay().switchIcon();
-						window.getPlayerManager().getMediaComponent().play();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					window.getPlayerManager().setMediaComponent(fileChooser.getSelectedFile().getAbsolutePath());
+					SwingUtilities.updateComponentTreeUI(window);
+					((SouthBar)window.getSouthBar()).getPlay().switchIcon();
+					window.getPlayerManager().getMediaComponent().play();
 				}
 			}
 		});
