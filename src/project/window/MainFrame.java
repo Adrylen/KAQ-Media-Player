@@ -18,6 +18,7 @@ import java.awt.Dimension;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import javax.swing.Box;
+import project.window.panels.ProgressBar;
 
 public class MainFrame extends JFrame {
 	private final int MINIMUM_WIDTH = 600;
@@ -30,7 +31,8 @@ public class MainFrame extends JFrame {
 	private MediaPanel mediaPanel;
 	private @Getter PlayerManager playerManager;
 
-    public MainFrame() throws IOException {
+
+    public MainFrame() throws MalformedURLException, IOException {
     	super("KAQMediaPlayer");
         this.northMenu = new NorthMenu(this);
         this.southBar = new SouthBar(this);
