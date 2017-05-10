@@ -1,36 +1,45 @@
+/*
+ *   Java Project
+ *   Project
+ *   Package : project.media
+ *   Created by AdrienMartinez on 10/05/2017.
+*/
+
 package project.media;
 
 import lombok.Getter;
-import project.media.files.PathFile;
+import lombok.Setter;
+import project.window.MainFrame;
 import project.window.panels.MediaPanel;
 
-import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 
 public class PlayerManager {
-	private JFrame frame;
-	private MediaPanel mediaPanel;
-	private @Getter MediaComponent mediaComponent;
+	private static PlayerManager instance;
 
-	public PlayerManager(JFrame frame, MediaPanel mediaPanel) {
-		this.frame = frame;
-		this.mediaPanel = mediaPanel;
-	}
+	@Getter
+	@Setter
+	private MediaPanel activeMediaPanel;
 
-	public PlayerManager setMediaComponent(PathFile pathFile) {
-		return this.setMediaComponent(pathFile.getPath());
-	}
+	@Getter
+	private MediaComponent mediaComponent;
 
 	public PlayerManager setMediaComponent(String file) {
-		if(this.mediaComponent != null) {
-			this.mediaComponent.remove(this.mediaComponent);
+		if(mediaComponent != null) {
+			mediaComponent.remove(mediaComponent);
 		}
-		this.mediaComponent = new MediaComponent(file).setMediaPanel(frame);
-		this.mediaPanel.add(this.mediaComponent, BorderLayout.CENTER);
+		mediaComponent = new MediaComponent(file);
+		activeMediaPanel.add(mediaComponent, BorderLayout.CENTER);
+		SwingUtilities.updateComponentTreeUI(MainFrame.getInstance());
+
 		return this;
 	}
 
-/*	public MediaComponent getMediaComponent() {
-		return this.mediaComponent;
-	}*/
+	public static PlayerManager getInstance() {
+		if(instance == null) {
+			instance = new PlayerManager();
+		}
+		return instance;
+	}
 }

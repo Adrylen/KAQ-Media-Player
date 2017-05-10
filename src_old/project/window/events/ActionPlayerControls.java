@@ -1,11 +1,9 @@
 package project.window.events;
 
 import project.media.PlayerManager;
-import project.window.panels.PlaylistPanel;
+import project.utils.console;
 import project.window.panels.buttons.ControlButton;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -35,7 +33,7 @@ public class ActionPlayerControls extends MouseAdapter {
 				((ControlButton) e.getSource()).getWindow().getPlaylistPanel().togglePanel();
 				break;
 			default:
-				System.out.println("No action defined on "+this.action);
+				console.log("No action defined on " + this.action);
 		}
 	}
 }
