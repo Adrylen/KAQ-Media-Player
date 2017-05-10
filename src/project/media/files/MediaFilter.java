@@ -1,3 +1,10 @@
+/*
+ *   Java Project
+ *   Project
+ *   Package : project.media.files
+ *   Created by AdrienMartinez on 10/05/2017.
+*/
+
 package project.media.files;
 
 import javax.swing.filechooser.FileFilter;
@@ -22,6 +29,6 @@ public class MediaFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 }

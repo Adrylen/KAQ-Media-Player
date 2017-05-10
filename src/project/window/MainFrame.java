@@ -1,73 +1,74 @@
+/*
+ *   Java Project
+ *   Project
+ *   Package : project.window
+ *   Created by AdrienMartinez on 09/05/2017.
+*/
+
 package project.window;
 
 import lombok.Getter;
 import project.media.PlayerManager;
+import project.window.panels.ControlBar;
 import project.window.panels.MediaPanel;
-import project.window.panels.NorthMenu;
-import project.window.panels.PlaylistPanel;
-import project.window.panels.SouthBar;
+import project.window.panels.ToolBar;
 
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import javax.swing.Box;
-import project.window.panels.ProgressBar;
+import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
-	private final int MINIMUM_WIDTH = 600;
+	private static MainFrame instance;
+
+	@Getter
+	private ArrayList<MediaPanel> mediaPanels;
+
 	private final int MINIMUM_HEIGHT = 400;
+	private final int MINIMUM_WIDTH = 600;
 
-	private JScrollPane playlistScrollPane;
-	private @Getter PlaylistPanel playlistPanel;
-	private JMenuBar northMenu;
-	private @Getter Box southBar;
-	private MediaPanel mediaPanel;
-	private @Getter PlayerManager playerManager;
+	private MainFrame() {
+		super("KAQ Media Player");
+	}
 
+	public MainFrame init() {
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout(5,5));
+		setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
 
-    public MainFrame() throws MalformedURLException, IOException {
-    	super("KAQMediaPlayer");
-        this.northMenu = new NorthMenu(this);
-        this.southBar = new SouthBar(this);
+		ToolBar.getInstance();
+		ControlBar.getInstance();
 
-        this.mediaPanel = new MediaPanel();
-	    this.playlistPanel = new PlaylistPanel(MINIMUM_WIDTH/4, MINIMUM_HEIGHT);
+		PlayerManager.getInstance().setActiveMediaPanel(new MediaPanel());
+		mediaPanels = new ArrayList<>();
+		mediaPanels.add(PlayerManager.getInstance().getActiveMediaPanel());
 
-        this.playlistScrollPane = new JScrollPane(this.playlistPanel,
-	        ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-	        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-        );
+		return this;
+	}
 
-        this.playerManager = new PlayerManager(this, mediaPanel);
-    }
+	public void create() {
+		add(ToolBar.getInstance().create(), BorderLayout.NORTH);
+		add(ControlBar.getInstance().create(), BorderLayout.SOUTH);
 
-    public MainFrame init() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setExtendedState(MAXIMIZED_BOTH);
-        this.setLayout(new BorderLayout(5, 5));
-        this.setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
+		for(MediaPanel mediaPanel : mediaPanels) {
+			add(mediaPanel, BorderLayout.CENTER);
+		}
 
-        this.playlistScrollPane.setPreferredSize(new Dimension(MINIMUM_WIDTH/4, MINIMUM_HEIGHT));
-        this.playlistPanel.attachParentPane(this.playlistScrollPane).attachWindow(this);
+		setVisible(true);
+	}
 
-	    ((SouthBar)this.southBar).attachPlayer(this.playerManager).create();
+	public static MainFrame getInstance() {
+		if(instance == null) {
+			instance = new MainFrame();
+		}
+		return instance;
+	}
 
-        return this;
-    }
-
-    public MainFrame create() {
-        this.add(northMenu, BorderLayout.NORTH);
-//        this.add(playlistScrollPane, BorderLayout.WEST);
-        this.add(mediaPanel, BorderLayout.CENTER);
-        this.add(southBar, BorderLayout.SOUTH);
-
-        this.setVisible(true);
-
-        return this;
-    }
+	public void test() throws IOException {
+		PlayerManager.getInstance().setMediaComponent(new File("assets/videos/bob_video.mp4").getCanonicalPath());
+		PlayerManager.getInstance().getMediaComponent().play();
+	}
 }
